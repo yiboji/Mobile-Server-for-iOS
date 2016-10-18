@@ -97,7 +97,6 @@ Parse.Cloud.define('testLoadCouponStore',function(request,response){
                                         
 						}
 						if(updatedDate>latestCouponUpdatedAt){
-//							console.log("date " + updatedDate +"greater than "+latestCouponUpdatedAt);
 							latestCouponUpdatedAt = updatedDate;
 						}
                            
@@ -115,8 +114,6 @@ Parse.Cloud.define('testLoadCouponStore',function(request,response){
                                         
 					if(noExpire==true && withinEffectiveRadius==true){
 						var retval = store.set({'latestCouponUpdatedAt':latestCouponUpdatedAt});
-						// console.log("set new map to store:"+retval);
-						// console.log("last coupon updated at: "+store.get('latestCouponUpdatedAt'));
                         store.dirty = function() {return false};
 						storeList.push(store);
 					}
@@ -127,7 +124,6 @@ Parse.Cloud.define('testLoadCouponStore',function(request,response){
 			});
 			return promise;
 		}).then(function(){
-			//storeList = JSON.stringify(storeList);
 			console.log("firstBatchTestCouponStore result");
 			console.log(storeList);
 			response.success(storeList);
@@ -177,9 +173,7 @@ Parse.Cloud.define('testNewLoadCouponStore',function(request,response){
 		var coupontest = new Array();
 		query.find(function(stores){
 			var retStores = stores;
-			//console.log(stores);
 			for(var i=0; i<stores.length; i++){
-				// console.log(stores[i].get("merchantName"));
 				storetest.push(stores[i].get("merchantName"));
 			}
 			var couponQuery = new Parse.Query(Parse.Object.extend('FirstBatchTestCoupons'));
@@ -278,9 +272,7 @@ Parse.Cloud.define('testNewLoadCouponStore',function(request,response){
         var coupontest = new Array();
         query.find(function(stores){
             var retStores = stores;
-            //console.log(stores);
             for(var i=0; i<stores.length; i++){
-                // console.log(stores[i].get("merchantName"));
                 storetest.push(stores[i].get("merchantName"));
             }
             var couponQuery = new Parse.Query(Parse.Object.extend('Coupons'));
@@ -413,9 +405,7 @@ Parse.Cloud.define('loadCouponStoreWithSubType',function(request,response){
         var coupontest = new Array();
         query.find(function(stores){
             var retStores = stores;
-            //console.log(stores);
             for(var i=0; i<stores.length; i++){
-                // console.log(stores[i].get("merchantName"));
                 storetest.push(stores[i].get("merchantName"));
             }
             var couponQuery = new Parse.Query(Parse.Object.extend('Coupons'));
